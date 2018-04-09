@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">StravaPlus</string>
+    <string name="login_strava">Login</string>
+</resources>
