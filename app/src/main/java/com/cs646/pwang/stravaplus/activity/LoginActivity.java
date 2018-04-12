@@ -23,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final int RQ_LOGIN = 1;
     private static final int CLIENT_ID = 9353;
-    private static final String CLIENT_SECRET = "adf9e2e21ce5de147b7816cb82103455aacb18e8";
     private static final String REDIRECT_URI = "stravapluscs646://cs646callback.com";
 
     static {

@@ -16,10 +16,10 @@ public class LoginAsyncTask extends AsyncTask<String, Void, String> {
     private static final int CLIENT_ID = 9353;
     private static final String CLIENT_SECRET = "adf9e2e21ce5de147b7816cb82103455aacb18e8";
 
-    private LoginActivity context;
+    private final ThreadLocal<LoginActivity> context = new ThreadLocal<>();
 
     public LoginAsyncTask(LoginActivity context) {
-        this.context = context;
+        this.context.set(context);
     }
 
     @Override
@@ -39,13 +39,13 @@ public class LoginAsyncTask extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String token) {
         saveToken(token);
-        this.context.finish();
+        this.context.get().finish();
     }
 
     private void saveToken(String token) {
-        SharedPreferences sharedPref = this.context.getSharedPreferences("app", Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = this.context.get().getSharedPreferences("app", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        String key = this.context.getString(R.string.token_key);
+        String key = this.context.get().getString(R.string.token_key);
         editor.putString(key, token);
         editor.apply();
     }
