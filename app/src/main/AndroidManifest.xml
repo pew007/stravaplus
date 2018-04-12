@@ -16,15 +16,7 @@
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
-
-                <data
-                    android:host="cs646callback.com"
-                    android:scheme="stravapluscs646" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
