@@ -6,9 +6,9 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
-import android.util.Log;
 
 import com.cs646.pwang.stravaplus.R;
+import com.cs646.pwang.stravaplus.task.LoginAsyncTask;
 import com.sweetzpot.stravazpot.authenticaton.api.AccessScope;
 import com.sweetzpot.stravazpot.authenticaton.api.ApprovalPrompt;
 import com.sweetzpot.stravazpot.authenticaton.api.AuthenticationAPI;
@@ -18,9 +18,8 @@ import com.sweetzpot.stravazpot.authenticaton.model.LoginResult;
 import com.sweetzpot.stravazpot.authenticaton.ui.StravaLoginActivity;
 import com.sweetzpot.stravazpot.authenticaton.ui.StravaLoginButton;
 import com.sweetzpot.stravazpot.common.api.AuthenticationConfig;
-import com.sweetzpot.stravazpot.common.api.StravaConfig;
 
-public class AuthenticationActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private static final int RQ_LOGIN = 1;
     private static final int CLIENT_ID = 9353;
@@ -34,7 +33,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_authentication);
+        setContentView(R.layout.activity_login);
 
         StravaLoginButton loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(event -> login());
@@ -56,34 +55,8 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         if (requestCode == RQ_LOGIN && resultCode == RESULT_OK && data != null) {
             String code = data.getStringExtra(StravaLoginActivity.RESULT_CODE);
-
-            Thread thread = new Thread(() -> {
-                try {
-                    AuthenticationConfig config = AuthenticationConfig.create()
-                            .debug()
-                            .build();
-                    AuthenticationAPI api = new AuthenticationAPI(config);
-                    LoginResult result = api.getTokenForApp(AppCredentials.with(CLIENT_ID, CLIENT_SECRET))
-                            .withCode(code)
-                            .execute();
-
-                    String token = result.getToken().toString();
-                    saveToken(token);
-                    finish();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-            thread.start();
+            LoginAsyncTask task = new LoginAsyncTask(this);
+            task.execute(code);
         }
-    }
-
-    private void saveToken(String token) {
-        SharedPreferences sharedPref = getSharedPreferences("app", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        String key = getString(R.string.token_key);
-        editor.putString(key, token);
-        editor.apply();
     }
 }

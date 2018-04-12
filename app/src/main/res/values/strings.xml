@@ -2,4 +2,6 @@
     <string name="app_name">StravaPlus</string>
     <string name="login_strava">Login</string>
     <string name="token_key">token</string>
+
+    <string name="nav_logout">Logout</string>
 </resources>

@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.cs646.pwang.stravaplus.R;
 import com.cs646.pwang.stravaplus.task.ActivitiesAsyncTask;
-import com.sweetzpot.stravazpot.common.api.StravaConfig;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,24 +25,19 @@ public class MainActivity extends AppCompatActivity {
         String authToken = sharedPref.getString(key, "");
 
         if (authToken.equals("")) {
-            Intent authIntent = new Intent(this, AuthenticationActivity.class);
+            Intent authIntent = new Intent(this, LoginActivity.class);
             startActivity(authIntent);
         } else {
-            StravaConfig config = StravaConfig.withToken(authToken).build();
-            new ActivitiesAsyncTask(config).execute();
+            ActivitiesAsyncTask task = new ActivitiesAsyncTask();
+            task.execute(authToken);
         }
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(menuItem -> {
-            // set item as selected to persist highlight
             menuItem.setChecked(true);
-            // close drawer when item is tapped
             mDrawerLayout.closeDrawers();
-
-            // Add code here to update the UI based on the item selected
-            // For example, swap UI fragments here
 
             return true;
         });
