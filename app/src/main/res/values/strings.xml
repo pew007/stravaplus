@@ -3,5 +3,8 @@
     <string name="login_strava">Login</string>
     <string name="token_key">token</string>
 
+    <string name="nav_activities">Activities</string>
+    <string name="nav_stats">Stats</string>
+    <string name="nav_profile">Profile</string>
     <string name="nav_logout">Logout</string>
 </resources>

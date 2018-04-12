@@ -25,9 +25,7 @@ public class LoginAsyncTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
         String code = strings[0];
-        AuthenticationConfig config = AuthenticationConfig.create()
-                .debug()
-                .build();
+        AuthenticationConfig config = AuthenticationConfig.create().build();
         AuthenticationAPI api = new AuthenticationAPI(config);
         LoginResult result = api.getTokenForApp(AppCredentials.with(CLIENT_ID, CLIENT_SECRET))
                 .withCode(code)

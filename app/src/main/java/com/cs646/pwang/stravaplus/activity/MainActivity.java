@@ -24,33 +24,57 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setupActionBar();
+        setupNavigationDrawer();
+
         SharedPreferences sharedPref = getSharedPreferences("app", Context.MODE_PRIVATE);
         String key = getString(R.string.token_key);
         String authToken = sharedPref.getString(key, "");
 
         if (authToken.equals("")) {
-            Intent authIntent = new Intent(this, LoginActivity.class);
-            startActivity(authIntent);
+            Intent login = new Intent(this, LoginActivity.class);
+            startActivity(login);
         } else {
-            ActivitiesAsyncTask task = new ActivitiesAsyncTask();
-            task.execute(authToken);
+            setupActivity(authToken);
         }
+    }
 
+    private void setupActionBar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        if (actionbar != null) {
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        }
+    }
 
+    private void setupNavigationDrawer() {
         mDrawerLayout = findViewById(R.id.drawer_layout);
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             menuItem.setChecked(true);
             mDrawerLayout.closeDrawers();
 
+            switch (menuItem.getItemId()) {
+                case R.id.nav_logout:
+                    SharedPreferences sharedPref = getSharedPreferences("app", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("token", "");
+                    editor.apply();
+
+                    finish();
+                    startActivity(getIntent());
+                    return true;
+            }
+
             return true;
         });
+    }
+
+    private void setupActivity(String authToken) {
+        ActivitiesAsyncTask task = new ActivitiesAsyncTask();
+        task.execute(authToken);
     }
 
     @Override
