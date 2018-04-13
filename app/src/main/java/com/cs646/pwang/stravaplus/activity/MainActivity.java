@@ -17,11 +17,13 @@ import android.view.MenuItem;
 
 import com.cs646.pwang.stravaplus.R;
 import com.cs646.pwang.stravaplus.fragment.ActivitiesFragment;
-import com.cs646.pwang.stravaplus.task.ActivitiesAsyncTask;
+import com.cs646.pwang.stravaplus.fragment.ProfileFragment;
+import com.cs646.pwang.stravaplus.fragment.StatsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
+    private String authToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = getSharedPreferences("app", Context.MODE_PRIVATE);
         String key = getString(R.string.token_key);
-        String authToken = sharedPref.getString(key, "");
+        authToken = sharedPref.getString(key, "");
 
         if (authToken.equals("")) {
             Intent login = new Intent(this, LoginActivity.class);
             startActivity(login);
         } else {
-            setupActivity(authToken);
+            goToActivitiesFragment();
         }
     }
 
@@ -61,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
             mDrawerLayout.closeDrawers();
 
             switch (menuItem.getItemId()) {
+                case R.id.nav_activities:
+                    goToActivitiesFragment();
+                    return true;
+                case R.id.nav_stats:
+                    goToStatsFragment();
+                    return true;
+                case R.id.nav_profile:
+                    goToProfileFragment();
+                    return true;
                 case R.id.nav_logout:
                     SharedPreferences sharedPref = getSharedPreferences("app", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
@@ -76,14 +87,36 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setupActivity(String authToken) {
-        ActivitiesAsyncTask task = new ActivitiesAsyncTask();
-        task.execute(authToken);
-
+    private void goToActivitiesFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         ActivitiesFragment activitiesFragment = new ActivitiesFragment();
-        fragmentTransaction.add(R.id.content_fragment, activitiesFragment);
+        Bundle data = new Bundle();
+        data.putString("token", authToken);
+        activitiesFragment.setArguments(data);
+        fragmentTransaction.replace(R.id.content_fragment, activitiesFragment);
+        fragmentTransaction.commit();
+    }
+
+    private void goToStatsFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        StatsFragment statsFragment = new StatsFragment();
+        Bundle data = new Bundle();
+        data.putString("token", authToken);
+        statsFragment.setArguments(data);
+        fragmentTransaction.replace(R.id.content_fragment, statsFragment);
+        fragmentTransaction.commit();
+    }
+
+    private void goToProfileFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ProfileFragment profileFragment = new ProfileFragment();
+        Bundle data = new Bundle();
+        data.putString("token", authToken);
+        profileFragment.setArguments(data);
+        fragmentTransaction.replace(R.id.content_fragment, profileFragment);
         fragmentTransaction.commit();
     }
 
