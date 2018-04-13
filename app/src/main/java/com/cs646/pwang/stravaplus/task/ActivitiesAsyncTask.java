@@ -11,8 +11,8 @@ public class ActivitiesAsyncTask extends AsyncTask<String, Void, List> {
 
     @Override
     protected List doInBackground(String... strings) {
-        String autoToken = strings[0];
-        StravaConfig config = StravaConfig.withToken(autoToken).build();
+        String authToken = strings[0];
+        StravaConfig config = StravaConfig.withToken(authToken).build();
         ActivityAPI activityAPI = new ActivityAPI(config);
         return activityAPI.listMyActivities().execute();
     }
