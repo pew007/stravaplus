@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         data.putString("token", authToken);
         activitiesFragment.setArguments(data);
         fragmentTransaction.replace(R.id.content_fragment, activitiesFragment);
+        fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
     }
 
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         data.putString("token", authToken);
         statsFragment.setArguments(data);
         fragmentTransaction.replace(R.id.content_fragment, statsFragment);
+        fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
     }
 
@@ -117,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         data.putString("token", authToken);
         profileFragment.setArguments(data);
         fragmentTransaction.replace(R.id.content_fragment, profileFragment);
+        fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
     }
 
