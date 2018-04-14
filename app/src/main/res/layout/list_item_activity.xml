@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
             android:text="Afternoon Run"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -27,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:text="April 11, 2018 at 4:30 PM"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="40dp" />
@@ -70,8 +72,13 @@
                     android:text="Time 0h 55m"
                     android:textAppearance="@style/TextAppearance.AppCompat" />
             </LinearLayout>
+
         </android.support.constraint.ConstraintLayout>
 
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

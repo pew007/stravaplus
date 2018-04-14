@@ -1,12 +1,10 @@
 package com.cs646.pwang.stravaplus.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import com.cs646.pwang.stravaplus.R;
 import com.cs646.pwang.stravaplus.adapter.ActivityListItemAdapter;
@@ -15,9 +13,6 @@ import com.sweetzpot.stravazpot.activity.model.Activity;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ActivitiesFragment extends ListFragment {
 
     public ActivitiesFragment() {

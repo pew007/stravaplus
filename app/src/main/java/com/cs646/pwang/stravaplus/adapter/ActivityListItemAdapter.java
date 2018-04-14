@@ -7,16 +7,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.cs646.pwang.stravaplus.R;
+import com.cs646.pwang.stravaplus.util.DataTransformer;
+import com.cs646.pwang.stravaplus.util.DisplayHelper;
 import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.activity.model.ActivityType;
 import com.sweetzpot.stravazpot.common.model.Distance;
 import com.sweetzpot.stravazpot.common.model.Speed;
 import com.sweetzpot.stravazpot.common.model.Time;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ActivityListItemAdapter extends ArrayAdapter<Activity> {
 
@@ -45,9 +51,16 @@ public class ActivityListItemAdapter extends ArrayAdapter<Activity> {
         Speed averageSpeed = activity.getAverageSpeed();
         Time elapsedTime = activity.getElapsedTime();
 
+        TextView nameText = listItem.findViewById(R.id.activity_name);
+        nameText.setText(name);
+        int drawable = type.name().equals(ActivityType.RUN) ? R.drawable.ic_run : R.drawable.ic_bike;
+        nameText.setCompoundDrawablesWithIntrinsicBounds(drawable, 0, 0, 0);
 
-//        TextView name = listItem.findViewById(R.id.subject_name);
-//        name.setText(activity.getTitle());
+        TextView startDateText = listItem.findViewById(R.id.activity_date);
+        startDateText.setText(DisplayHelper.getDisplayActivityDate(startDate));
+
+        TextView distanceText = listItem.findViewById(R.id.activity_distance);
+        distanceText.setText(DisplayHelper.getDisplayActivityDistance(distance));
 
         return listItem;
     }
