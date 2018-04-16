@@ -10,4 +10,10 @@ public class DataTransformer {
 
         return meters * meterToMile;
     }
+
+    public static double metersPerSecondToMilesPerHour(double metersPerSecond) {
+        double metersPerSecondToMilesPerHour = 2.23694;
+
+        return metersPerSecond * metersPerSecondToMilesPerHour;
+    }
 }
