@@ -2,6 +2,7 @@
     <string name="app_name">Strava Plus</string>
     <string name="login_strava">Login</string>
     <string name="token_key">token</string>
+    <string name="google_map_key">AIzaSyAqeJZMIV0yPmDzSTjaZPg4yB8QuhZF06I</string>
 
     <string name="nav_activities">Activities</string>
     <string name="nav_stats">Stats</string>
