@@ -33,48 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/activity_distance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Distance 6.7mi"
-                android:textAppearance="@style/TextAppearance.AppCompat" />
-
-            <TextView
-                android:id="@+id/activity_speed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Pace 8:12 /mi"
-                android:textAppearance="@style/TextAppearance.AppCompat" />
-
-            <TextView
-                android:id="@+id/activity_moving_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Time 0h 55m"
-                android:textAppearance="@style/TextAppearance.AppCompat" />
-        </LinearLayout>
-
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <fragment
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.MapFragment"
@@ -89,7 +47,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.GridLayout
             android:layout_width="0dp"
@@ -99,6 +57,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:rowCount="3">
 
             <LinearLayout
@@ -115,14 +74,14 @@
                     android:id="@+id/activity_speed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="7.5"
+                    android:text="7.5 mph"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="mph" />
+                    android:text="speed" />
             </LinearLayout>
 
             <LinearLayout
@@ -139,14 +98,14 @@
                     android:id="@+id/activity_pace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="8:00"
+                    android:text="8:00 /mi"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="/mi" />
+                    android:text="pace" />
             </LinearLayout>
 
             <LinearLayout
@@ -281,17 +240,17 @@
                 app:layout_gravity="fill">
 
                 <TextView
-                    android:id="@+id/activity_max_hr"
+                    android:id="@+id/activity_distance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="180"
+                    android:text="6.7 mi"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="max heart rate" />
+                    android:text="distance" />
             </LinearLayout>
 
             <LinearLayout
@@ -305,17 +264,17 @@
                 app:layout_gravity="fill">
 
                 <TextView
-                    android:id="@+id/activity_min_hr"
+                    android:id="@+id/activity_moving_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="144"
+                    android:text="0h 55m"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="min heart rate" />
+                    android:text="elapsed" />
             </LinearLayout>
 
         </android.support.v7.widget.GridLayout>

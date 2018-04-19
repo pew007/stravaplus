@@ -9,6 +9,9 @@
     <string name="nav_profile">Profile</string>
     <string name="nav_logout">Logout</string>
 
+    <string name="label_steps">steps</string>
+    <string name="label_power">avg power</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_activities_fragment">Hello activities fragment</string>
     <string name="hello_profile_fragment">Hello profile fragment</string>

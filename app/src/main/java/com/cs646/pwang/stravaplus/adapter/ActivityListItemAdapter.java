@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.cs646.pwang.stravaplus.R;
 import com.cs646.pwang.stravaplus.util.DisplayHelper;
 import com.sweetzpot.stravazpot.activity.model.Activity;
-import com.sweetzpot.stravazpot.activity.model.ActivityType;
 import com.sweetzpot.stravazpot.common.model.Distance;
 import com.sweetzpot.stravazpot.common.model.Speed;
 import com.sweetzpot.stravazpot.common.model.Time;
@@ -43,26 +42,25 @@ public class ActivityListItemAdapter extends ArrayAdapter<Activity> {
         String name = activity.getName();
         Date startDate = activity.getStartDateLocal();
         Distance distance = activity.getDistance();
-        ActivityType type = activity.getType();
         Speed averageSpeed = activity.getAverageSpeed();
         Time movingTime = activity.getMovingTime();
 
         TextView nameText = listItem.findViewById(R.id.activity_name);
         nameText.setText(name);
-        int drawable = type.name().equals("RUN") ? R.drawable.ic_run : R.drawable.ic_bike;
-        nameText.setCompoundDrawablesWithIntrinsicBounds(drawable, 0, 0, 0);
 
         TextView startDateText = listItem.findViewById(R.id.activity_date);
         startDateText.setText(DisplayHelper.displayActivityDate(startDate));
 
         TextView distanceText = listItem.findViewById(R.id.activity_distance);
-        distanceText.setText(DisplayHelper.displayActivityDistance(distance));
+        String text = "Distance " + DisplayHelper.displayActivityDistance(distance);
+        distanceText.setText(text);
 
         TextView averageSpeedText = listItem.findViewById(R.id.activity_speed);
-        averageSpeedText.setText(DisplayHelper.displayActivityAverageSpeed(averageSpeed));
+        text = "Speed " + DisplayHelper.displayActivityAverageSpeed(averageSpeed);
+        averageSpeedText.setText(text);
 
         TextView movingTimeText = listItem.findViewById(R.id.activity_moving_time);
-        movingTimeText.setText(DisplayHelper.displayElapsedTime(movingTime));
+        movingTimeText.setText(DisplayHelper.displayTime(movingTime));
 
         return listItem;
     }

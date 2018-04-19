@@ -1,6 +1,8 @@
 package com.cs646.pwang.stravaplus.util;
 
 import com.sweetzpot.stravazpot.common.model.Distance;
+import com.sweetzpot.stravazpot.common.model.Speed;
+import com.sweetzpot.stravazpot.common.model.Time;
 
 public class DataTransformer {
 
@@ -11,9 +13,16 @@ public class DataTransformer {
         return meters * meterToMile;
     }
 
-    public static double metersPerSecondToMilesPerHour(double metersPerSecond) {
+    public static double speedToMilesPerHour(Speed speed) {
         double metersPerSecondToMilesPerHour = 2.23694;
+        double metersPerSecond = speed.getMetersPerSecond();
 
         return metersPerSecond * metersPerSecondToMilesPerHour;
+    }
+
+    public static int calculateSteps(Speed speed, Time time) {
+        double metersPerSecond = speed.getMetersPerSecond();
+        int seconds = time.getSeconds();
+        return  (int) metersPerSecond * seconds;
     }
 }
