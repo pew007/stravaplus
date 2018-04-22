@@ -13,8 +13,11 @@
     <string name="label_power">avg power</string>
 
     <string-array name="stats_options">
-        <item>Average Heart Rate</item>
-        <item>Average Speed</item>
+        <item>Average Running Heart Rate</item>
+        <item>Average Cycling Heart Rate</item>
+        <item>Average Running Speed</item>
+        <item>Average Cycling Speed</item>
+        <item>Average Cycling Power</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

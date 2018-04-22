@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cs646.pwang.stravaplus.R;
+import com.github.mikephil.charting.charts.LineChart;
+import com.sweetzpot.stravazpot.activity.model.Activity;
+
+import java.util.List;
 
 public class ChartFragment extends Fragment {
 
@@ -25,6 +29,12 @@ public class ChartFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
+        LineChart chart = getActivity().findViewById(R.id.chart);
+
+    }
+
+    public void displayChart(List<Activity> activities) {
 
     }
 }
