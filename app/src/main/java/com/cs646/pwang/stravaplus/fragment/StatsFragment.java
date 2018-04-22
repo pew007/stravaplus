@@ -3,6 +3,7 @@ package com.cs646.pwang.stravaplus.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,5 +49,14 @@ public class StatsFragment extends ListFragment implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Log.i("pw", options[i]);
+        ChartFragment chartFragment = new ChartFragment();
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+        Bundle data = new Bundle();
+        chartFragment.setArguments(data);
+
+        fragmentTransaction.replace(R.id.content_fragment, chartFragment);
+        fragmentTransaction.addToBackStack("");
+        fragmentTransaction.commit();
     }
 }
