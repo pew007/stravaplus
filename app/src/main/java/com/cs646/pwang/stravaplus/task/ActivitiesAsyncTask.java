@@ -24,7 +24,7 @@ public class ActivitiesAsyncTask extends AsyncTask<Void, Void, List<Activity>> {
 
         StravaConfig config = stravaConfiguration.getConfig();
         ActivityAPI activityAPI = new ActivityAPI(config);
-        return activityAPI.listMyActivities().execute();
+        return activityAPI.listMyActivities().perPage(100).execute();
     }
 
     @Override
