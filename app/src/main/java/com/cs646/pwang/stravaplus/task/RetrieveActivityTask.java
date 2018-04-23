@@ -2,12 +2,13 @@ package com.cs646.pwang.stravaplus.task;
 
 import android.os.AsyncTask;
 
+import com.cs646.pwang.stravaplus.StravaConfiguration;
 import com.cs646.pwang.stravaplus.fragment.ActivityDetailsFragment;
 import com.sweetzpot.stravazpot.activity.api.ActivityAPI;
 import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.common.api.StravaConfig;
 
-public class RetrieveActivityTask extends AsyncTask<Object, Void, Activity> {
+public class RetrieveActivityTask extends AsyncTask<Integer, Void, Activity> {
 
     private ActivityDetailsFragment mActivityDetailsFragment;
 
@@ -16,10 +17,9 @@ public class RetrieveActivityTask extends AsyncTask<Object, Void, Activity> {
     }
 
     @Override
-    protected Activity doInBackground(Object... objects) {
-        String authToken = (String) objects[0];
-        int activityId = (int) objects[1];
-        StravaConfig config = StravaConfig.withToken(authToken).build();
+    protected Activity doInBackground(Integer... integers) {
+        int activityId = integers[0];
+        StravaConfig config = StravaConfiguration.getInstance().getConfig();
         ActivityAPI activityAPI = new ActivityAPI(config);
 
         return activityAPI.getActivity(activityId)

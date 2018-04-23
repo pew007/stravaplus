@@ -1,6 +1,7 @@
 package com.cs646.pwang.stravaplus.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
@@ -20,7 +21,6 @@ import java.util.List;
 public class ActivitiesFragment extends ListFragment implements AdapterView.OnItemClickListener {
 
     private List<Activity> activities;
-    private String authToken;
 
     public ActivitiesFragment() {
     }
@@ -28,12 +28,16 @@ public class ActivitiesFragment extends ListFragment implements AdapterView.OnIt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        authToken = getArguments().getString("token");
-
-        ActivitiesAsyncTask task = new ActivitiesAsyncTask(this);
-        task.execute(authToken);
 
         return inflater.inflate(R.layout.fragment_activities, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        ActivitiesAsyncTask task = new ActivitiesAsyncTask(this);
+        task.execute();
     }
 
     public void showActivityList(List<Activity> activities) {
@@ -59,7 +63,6 @@ public class ActivitiesFragment extends ListFragment implements AdapterView.OnIt
         ActivityDetailsFragment detailsFragment = new ActivityDetailsFragment();
         Bundle data = new Bundle();
         data.putInt("activityId", activity.getID());
-        data.putString("authToken", authToken);
         detailsFragment.setArguments(data);
         fragmentTransaction.replace(R.id.content_fragment, detailsFragment);
         fragmentTransaction.addToBackStack("");

@@ -36,10 +36,9 @@ public class ActivityDetailsFragment extends Fragment implements OnMapReadyCallb
                              Bundle savedInstanceState) {
 
         int activityId = getArguments().getInt("activityId");
-        String authToken = getArguments().getString("authToken");
 
         RetrieveActivityTask task = new RetrieveActivityTask(this);
-        task.execute(authToken, activityId);
+        task.execute(activityId);
 
         return inflater.inflate(R.layout.fragment_activity_details, container, false);
     }

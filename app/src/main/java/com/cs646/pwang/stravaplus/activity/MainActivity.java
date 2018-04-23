@@ -15,14 +15,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.cs646.pwang.stravaplus.R;
+import com.cs646.pwang.stravaplus.StravaConfiguration;
 import com.cs646.pwang.stravaplus.fragment.ActivitiesFragment;
 import com.cs646.pwang.stravaplus.fragment.ProfileFragment;
 import com.cs646.pwang.stravaplus.fragment.StatsFragment;
+import com.sweetzpot.stravazpot.common.api.StravaConfig;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
-    private String authToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +35,16 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = getSharedPreferences("app", Context.MODE_PRIVATE);
         String key = getString(R.string.token_key);
-        authToken = sharedPref.getString(key, "");
+        String authToken = sharedPref.getString(key, "");
 
         if (authToken.equals("")) {
             Intent login = new Intent(this, LoginActivity.class);
             startActivity(login);
         } else {
+            StravaConfig config = StravaConfig.withToken(authToken).build();
+            StravaConfiguration stravaConfiguration = StravaConfiguration.getInstance();
+            stravaConfiguration.setConfig(config);
+
             goToActivitiesFragment();
         }
     }
@@ -90,9 +95,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         ActivitiesFragment activitiesFragment = new ActivitiesFragment();
-        Bundle data = new Bundle();
-        data.putString("token", authToken);
-        activitiesFragment.setArguments(data);
+
         fragmentTransaction.replace(R.id.content_fragment, activitiesFragment);
         fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
@@ -102,9 +105,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         StatsFragment statsFragment = new StatsFragment();
-        Bundle data = new Bundle();
-        data.putString("token", authToken);
-        statsFragment.setArguments(data);
+
         fragmentTransaction.replace(R.id.content_fragment, statsFragment);
         fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
@@ -114,9 +115,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         ProfileFragment profileFragment = new ProfileFragment();
-        Bundle data = new Bundle();
-        data.putString("token", authToken);
-        profileFragment.setArguments(data);
+
         fragmentTransaction.replace(R.id.content_fragment, profileFragment);
         fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
