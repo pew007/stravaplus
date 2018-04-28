@@ -8,13 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cs646.pwang.stravaplus.R;
+import com.cs646.pwang.stravaplus.chart.AbstractChartDataType;
+import com.cs646.pwang.stravaplus.chart.AverageRunHeartRateDataType;
 import com.cs646.pwang.stravaplus.task.GetActivitiesForChartTask;
-import com.cs646.pwang.stravaplus.util.DataTransformer;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.sweetzpot.stravazpot.activity.model.Activity;
+import com.sweetzpot.stravazpot.activity.model.ActivityType;
 import com.sweetzpot.stravazpot.common.model.Time;
 
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import java.util.Date;
 import java.util.List;
 
 public class ChartFragment extends Fragment {
+
+    AbstractChartDataType mChartDataType;
 
     public ChartFragment() {
     }
@@ -36,6 +40,8 @@ public class ChartFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        mChartDataType = (AbstractChartDataType) getArguments().getSerializable("dataType");
 
         Date defaultStart = new Date(2018, 3, 1);
         Date defaultEnd = new Date(2018, 5, 1);
@@ -65,9 +71,15 @@ public class ChartFragment extends Fragment {
 
         for (int i = 0; i < activities.size(); i++) {
             Activity currentActivity = activities.get(i);
-            float averageSpeed = (float) DataTransformer.speedToMilesPerHour(currentActivity.getAverageSpeed());
 
-            entries.add(new Entry(i, averageSpeed));
+            List<ActivityType> activityTypes = mChartDataType.getActivityTypes();
+            float data = mChartDataType.getData(currentActivity);
+
+            if (data == 0 || !activityTypes.contains(currentActivity.getType())) {
+                continue;
+            }
+
+            entries.add(new Entry(i, data));
         }
 
         return entries;

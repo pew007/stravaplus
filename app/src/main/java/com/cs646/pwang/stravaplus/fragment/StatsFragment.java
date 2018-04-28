@@ -2,19 +2,17 @@ package com.cs646.pwang.stravaplus.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.cs646.pwang.stravaplus.R;
-import com.github.mikephil.charting.charts.LineChart;
+import com.cs646.pwang.stravaplus.chart.AbstractChartDataType;
+import com.cs646.pwang.stravaplus.chart.ChartDataTypeFactory;
 
 public class StatsFragment extends ListFragment implements AdapterView.OnItemClickListener {
 
@@ -46,11 +44,14 @@ public class StatsFragment extends ListFragment implements AdapterView.OnItemCli
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         ChartFragment chartFragment = new ChartFragment();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
 
+        AbstractChartDataType dataType = ChartDataTypeFactory.getDataType(options[position]);
+
         Bundle data = new Bundle();
+        data.putSerializable("dataType", dataType);
         chartFragment.setArguments(data);
 
         fragmentTransaction.replace(R.id.content_fragment, chartFragment);
