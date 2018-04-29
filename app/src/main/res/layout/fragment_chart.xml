@@ -12,25 +12,34 @@
 
         <LinearLayout
             android:id="@+id/date_filters"
+            style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/startDate"
+            <Button
+                android:id="@+id/last_week_button"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="date" />
+                android:text="@string/last_week_text" />
 
-            <EditText
-                android:id="@+id/endDate"
+            <Button
+                android:id="@+id/last_month_button"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="date" />
+                android:text="@string/last_month_text" />
+
+            <Button
+                android:id="@+id/last_quarter_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/last_quarter_text" />
         </LinearLayout>
 
         <com.github.mikephil.charting.charts.LineChart

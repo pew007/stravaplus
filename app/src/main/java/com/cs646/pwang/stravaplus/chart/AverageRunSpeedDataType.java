@@ -4,13 +4,12 @@ import com.cs646.pwang.stravaplus.util.DataTransformer;
 import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.activity.model.ActivityType;
 
-import java.util.Collections;
 import java.util.List;
 
 public class AverageRunSpeedDataType extends AbstractChartDataType {
     @Override
     public List<ActivityType> getActivityTypes() {
-        return Collections.singletonList(ActivityType.RUN);
+        return getRunType();
     }
 
     @Override

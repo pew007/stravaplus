@@ -14,6 +14,6 @@ public class AverageRideHeartRateDataType extends AbstractChartDataType {
 
     @Override
     public List<ActivityType> getActivityTypes() {
-        return Arrays.asList(ActivityType.RIDE, ActivityType.VIRTUAL_RIDE, ActivityType.EBIKE_RIDE);
+        return getRideType();
     }
 }

@@ -26,10 +26,11 @@ public class GetActivitiesForChartTask extends AsyncTask<Time, Void, List<Activi
 
         StravaConfig config = StravaConfiguration.getInstance().getConfig();
         ActivityAPI activityAPI = new ActivityAPI(config);
+
         return activityAPI.listMyActivities()
                 .perPage(30)
-//                .before(endDate)
-//                .after(startDate)
+                .before(endDate)
+                .after(startDate)
                 .execute();
         }
 

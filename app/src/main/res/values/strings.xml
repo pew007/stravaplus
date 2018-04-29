@@ -23,5 +23,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_profile_fragment">Hello profile fragment</string>
     <string name="hello_blank_fragment">Hello chart fragment</string>
+    <string name="last_week_text">7 days</string>
+    <string name="last_month_text">30 days</string>
+    <string name="last_quarter_text">3 months</string>
 
 </resources>
