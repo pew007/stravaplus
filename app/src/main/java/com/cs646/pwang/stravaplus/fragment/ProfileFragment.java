@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cs646.pwang.stravaplus.R;
-import com.cs646.pwang.stravaplus.task.ActivitiesAsyncTask;
 import com.cs646.pwang.stravaplus.task.GetAthleteTask;
 
 public class ProfileFragment extends Fragment {

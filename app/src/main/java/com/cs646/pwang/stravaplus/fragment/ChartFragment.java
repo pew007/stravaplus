@@ -12,6 +12,7 @@ import com.cs646.pwang.stravaplus.R;
 import com.cs646.pwang.stravaplus.chart.AbstractChartDataType;
 import com.cs646.pwang.stravaplus.task.GetActivitiesForChartTask;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -62,24 +63,21 @@ public class ChartFragment extends Fragment {
         Time start = getPastDateTime(7);
         Time end = getPastDateTime(0);
 
-        GetActivitiesForChartTask task = new GetActivitiesForChartTask(this);
-        task.execute(start, end);
+        getActivitiesForChart(start, end);
     }
 
     private void showLastMonth() {
         Time start = getPastDateTime(30);
         Time end = getPastDateTime(0);
 
-        GetActivitiesForChartTask task = new GetActivitiesForChartTask(this);
-        task.execute(start, end);
+        getActivitiesForChart(start, end);
     }
 
     private void showLastQuarter() {
         Time start = getPastDateTime(90);
         Time end = getPastDateTime(0);
 
-        GetActivitiesForChartTask task = new GetActivitiesForChartTask(this);
-        task.execute(start, end);
+        getActivitiesForChart(start, end);
     }
 
     private Time getPastDateTime(int numberOfDaysInThePast) {
@@ -94,6 +92,11 @@ public class ChartFragment extends Fragment {
         return new Time((int) (timestamp / 1000));
     }
 
+    private void getActivitiesForChart(Time start, Time end) {
+        GetActivitiesForChartTask task = new GetActivitiesForChartTask(this);
+        task.execute(start, end);
+    }
+
     public void displayChart(List<Activity> activities) {
         LineChart chart = getActivity().findViewById(R.id.chart);
 
@@ -105,6 +108,11 @@ public class ChartFragment extends Fragment {
 
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
+
+        Description description = new Description();
+        description.setText("Last 7 days");
+        chart.setDescription(description);
+
         chart.invalidate();
     }
 

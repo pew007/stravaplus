@@ -10,11 +10,11 @@ import com.sweetzpot.stravazpot.common.api.StravaConfig;
 
 import java.util.List;
 
-public class ActivitiesAsyncTask extends AsyncTask<Void, Void, List<Activity>> {
+public class GetActivitiesForListTask extends AsyncTask<Void, Void, List<Activity>> {
 
     private ActivitiesFragment mActivitiesFragment;
 
-    public ActivitiesAsyncTask(ActivitiesFragment activitiesFragment) {
+    public GetActivitiesForListTask(ActivitiesFragment activitiesFragment) {
         mActivitiesFragment = activitiesFragment;
     }
 

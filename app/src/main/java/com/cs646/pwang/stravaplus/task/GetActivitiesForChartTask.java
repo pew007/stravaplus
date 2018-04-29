@@ -9,6 +9,7 @@ import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.common.api.StravaConfig;
 import com.sweetzpot.stravazpot.common.model.Time;
 
+import java.util.Collections;
 import java.util.List;
 
 public class GetActivitiesForChartTask extends AsyncTask<Time, Void, List<Activity>> {
@@ -28,7 +29,7 @@ public class GetActivitiesForChartTask extends AsyncTask<Time, Void, List<Activi
         ActivityAPI activityAPI = new ActivityAPI(config);
 
         return activityAPI.listMyActivities()
-                .perPage(30)
+                .perPage(60)
                 .before(endDate)
                 .after(startDate)
                 .execute();
@@ -36,6 +37,7 @@ public class GetActivitiesForChartTask extends AsyncTask<Time, Void, List<Activi
 
     @Override
     protected void onPostExecute(List<Activity> activities) {
+        Collections.reverse(activities);
         mChartFragment.displayChart(activities);
     }
 }

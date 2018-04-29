@@ -15,14 +15,14 @@ import com.sweetzpot.stravazpot.authenticaton.model.LoginResult;
 import com.sweetzpot.stravazpot.common.api.AuthenticationConfig;
 import com.sweetzpot.stravazpot.common.api.StravaConfig;
 
-public class LoginAsyncTask extends AsyncTask<String, Void, String> {
+public class LoginTask extends AsyncTask<String, Void, String> {
 
     private static final int CLIENT_ID = 9353;
     private static final String CLIENT_SECRET = "adf9e2e21ce5de147b7816cb82103455aacb18e8";
 
     private final ThreadLocal<LoginActivity> context = new ThreadLocal<>();
 
-    public LoginAsyncTask(LoginActivity context) {
+    public LoginTask(LoginActivity context) {
         this.context.set(context);
     }
 

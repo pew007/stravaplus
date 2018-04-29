@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import android.widget.AdapterView;
 
 import com.cs646.pwang.stravaplus.R;
 import com.cs646.pwang.stravaplus.adapter.ActivityListItemAdapter;
-import com.cs646.pwang.stravaplus.task.ActivitiesAsyncTask;
+import com.cs646.pwang.stravaplus.task.GetActivitiesForListTask;
 import com.sweetzpot.stravazpot.activity.model.Activity;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class ActivitiesFragment extends ListFragment implements AdapterView.OnIt
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ActivitiesAsyncTask task = new ActivitiesAsyncTask(this);
+        GetActivitiesForListTask task = new GetActivitiesForListTask(this);
         task.execute();
     }
 
