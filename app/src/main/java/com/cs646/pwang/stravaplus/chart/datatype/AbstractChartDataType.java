@@ -1,5 +1,6 @@
-package com.cs646.pwang.stravaplus.chart;
+package com.cs646.pwang.stravaplus.chart.datatype;
 
+import com.github.mikephil.charting.components.Description;
 import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.activity.model.ActivityType;
 
@@ -14,11 +15,13 @@ public abstract class AbstractChartDataType implements Serializable {
 
     public abstract float getData(Activity activity);
 
-    public List<ActivityType> getRideType() {
+    public abstract Description getChartDescription();
+
+    List<ActivityType> getRideType() {
         return Arrays.asList(ActivityType.RIDE, ActivityType.VIRTUAL_RIDE, ActivityType.EBIKE_RIDE);
     }
 
-    public List<ActivityType> getRunType() {
+    List<ActivityType> getRunType() {
         return Collections.singletonList(ActivityType.RUN);
     }
 }

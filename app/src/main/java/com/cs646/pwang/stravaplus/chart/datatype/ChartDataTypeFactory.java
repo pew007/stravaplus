@@ -1,4 +1,4 @@
-package com.cs646.pwang.stravaplus.chart;
+package com.cs646.pwang.stravaplus.chart.datatype;
 
 public class ChartDataTypeFactory {
 

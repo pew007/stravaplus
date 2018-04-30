@@ -1,15 +1,22 @@
-package com.cs646.pwang.stravaplus.chart;
+package com.cs646.pwang.stravaplus.chart.datatype;
 
+import com.github.mikephil.charting.components.Description;
 import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.activity.model.ActivityType;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class AverageRidePowerDataType extends AbstractChartDataType {
     @Override
     public List<ActivityType> getActivityTypes() {
         return getRideType();    }
+
+    @Override
+    public Description getChartDescription() {
+        Description description = new Description();
+        description.setText("Average Ride Power");
+        return description;
+    }
 
     @Override
     public float getData(Activity activity) {

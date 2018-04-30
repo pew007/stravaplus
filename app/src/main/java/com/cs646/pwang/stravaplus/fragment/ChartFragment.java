@@ -9,21 +9,30 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.cs646.pwang.stravaplus.R;
-import com.cs646.pwang.stravaplus.chart.AbstractChartDataType;
+import com.cs646.pwang.stravaplus.chart.datatype.AbstractChartDataType;
+import com.cs646.pwang.stravaplus.chart.formatter.DateValueFormatter;
 import com.cs646.pwang.stravaplus.task.GetActivitiesForChartTask;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.activity.model.ActivityType;
 import com.sweetzpot.stravazpot.common.model.Time;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class ChartFragment extends Fragment {
 
@@ -56,7 +65,7 @@ public class ChartFragment extends Fragment {
         mLastMonth.setOnClickListener(event -> showLastMonth());
         mLastQuarter.setOnClickListener(event -> showLastQuarter());
 
-        showLastWeek();
+        showLastMonth();
     }
 
     private void showLastWeek() {
@@ -105,13 +114,27 @@ public class ChartFragment extends Fragment {
         LineDataSet dataSet = new LineDataSet(entries, "Label"); // add entries to dataset
         dataSet.setColor(R.color.colorPrimary);
         dataSet.setValueTextColor(R.color.colorAccent);
+        dataSet.setValueFormatter(new DateValueFormatter());
 
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
+        chart.setDescription(mChartDataType.getChartDescription());
 
-        Description description = new Description();
-        description.setText("Last 7 days");
-        chart.setDescription(description);
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setCenterAxisLabels(true);
+        xAxis.setValueFormatter((value, axis) -> {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy", Locale.US);
+            return dateFormat.format(new Date((long) value));
+        });
+
+        YAxis yAxis = chart.getAxisLeft();
+        yAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+        yAxis.setDrawGridLines(false);
+
+        YAxis rightAxis = chart.getAxisRight();
+        rightAxis.setEnabled(false);
 
         chart.invalidate();
     }
@@ -124,12 +147,15 @@ public class ChartFragment extends Fragment {
 
             List<ActivityType> activityTypes = mChartDataType.getActivityTypes();
             float data = mChartDataType.getData(currentActivity);
+            float timestamp = (currentActivity.getStartDateLocal().getTime()) / 1000;
 
             if (data == 0 || !activityTypes.contains(currentActivity.getType())) {
                 continue;
             }
 
-            entries.add(new Entry(i, data));
+            Entry entry = new Entry(timestamp, data);
+            entry.setData(currentActivity);
+            entries.add(entry);
         }
 
         return entries;

@@ -11,8 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.cs646.pwang.stravaplus.R;
-import com.cs646.pwang.stravaplus.chart.AbstractChartDataType;
-import com.cs646.pwang.stravaplus.chart.ChartDataTypeFactory;
+import com.cs646.pwang.stravaplus.chart.datatype.AbstractChartDataType;
+import com.cs646.pwang.stravaplus.chart.datatype.ChartDataTypeFactory;
 
 public class StatsFragment extends ListFragment implements AdapterView.OnItemClickListener {
 
