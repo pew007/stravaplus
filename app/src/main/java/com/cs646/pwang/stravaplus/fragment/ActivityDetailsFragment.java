@@ -12,10 +12,13 @@ import com.cs646.pwang.stravaplus.R;
 import com.cs646.pwang.stravaplus.task.RetrieveActivityTask;
 import com.cs646.pwang.stravaplus.util.DataTransformer;
 import com.cs646.pwang.stravaplus.util.DisplayHelper;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.maps.android.PolyUtil;
 import com.sweetzpot.stravazpot.activity.model.Activity;
@@ -110,7 +113,16 @@ public class ActivityDetailsFragment extends Fragment implements OnMapReadyCallb
             return;
         }
 
-        List<LatLng> latlng = PolyUtil.decode(encodedPolyline);
-        googleMap.addPolyline(new PolylineOptions().color(Color.RED)).setPoints(latlng);
+        List<LatLng> latlngs = PolyUtil.decode(encodedPolyline);
+        googleMap.addPolyline(new PolylineOptions().color(Color.RED)).setPoints(latlngs);
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for (LatLng latLng : latlngs) {
+            builder.include(latLng);
+        }
+        int padding = 50;
+        LatLngBounds bounds = builder.build();
+        final CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        googleMap.setOnMapLoadedCallback(() -> googleMap.animateCamera(cameraUpdate));
     }
 }
