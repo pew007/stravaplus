@@ -1,5 +1,6 @@
 package com.cs646.pwang.stravaplus.task;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,9 +22,17 @@ public class LoginTask extends AsyncTask<String, Void, String> {
     private static final String CLIENT_SECRET = "adf9e2e21ce5de147b7816cb82103455aacb18e8";
 
     private final ThreadLocal<LoginActivity> context = new ThreadLocal<>();
+    private ProgressDialog mProgressDialog;
 
     public LoginTask(LoginActivity context) {
         this.context.set(context);
+    }
+
+    @Override
+    protected void onPreExecute() {
+        mProgressDialog = new ProgressDialog(this.context.get());
+        mProgressDialog.setMessage("Logging in");
+        mProgressDialog.show();
     }
 
     @Override
@@ -38,6 +47,10 @@ public class LoginTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String token) {
+        if (mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+
         saveToken(token);
 
         Intent main = new Intent(this.context.get(), MainActivity.class);

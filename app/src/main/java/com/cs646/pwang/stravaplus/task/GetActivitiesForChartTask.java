@@ -1,5 +1,6 @@
 package com.cs646.pwang.stravaplus.task;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import com.cs646.pwang.stravaplus.StravaConfiguration;
@@ -15,9 +16,17 @@ import java.util.List;
 public class GetActivitiesForChartTask extends AsyncTask<Time, Void, List<Activity>> {
 
     private ChartFragment mChartFragment;
+    private ProgressDialog mProgressDialog;
 
     public GetActivitiesForChartTask(ChartFragment chartFragment) {
         mChartFragment = chartFragment;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        mProgressDialog = new ProgressDialog(mChartFragment.getContext());
+        mProgressDialog.setMessage("Loading activities");
+        mProgressDialog.show();
     }
 
     @Override
@@ -33,10 +42,14 @@ public class GetActivitiesForChartTask extends AsyncTask<Time, Void, List<Activi
                 .before(endDate)
                 .after(startDate)
                 .execute();
-        }
+    }
 
     @Override
     protected void onPostExecute(List<Activity> activities) {
+        if (mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+
         Collections.reverse(activities);
         mChartFragment.displayChart(activities);
     }
