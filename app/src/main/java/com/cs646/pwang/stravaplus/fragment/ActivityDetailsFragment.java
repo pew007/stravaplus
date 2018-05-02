@@ -106,16 +106,12 @@ public class ActivityDetailsFragment extends Fragment implements OnMapReadyCallb
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
         String encodedPolyline = currentActivity.getMap().getSummaryPolyline();
-
         if (encodedPolyline == null) {
             return;
         }
 
         List<LatLng> latlngs = PolyUtil.decode(encodedPolyline);
-        googleMap.addPolyline(new PolylineOptions().color(Color.RED)).setPoints(latlngs);
-
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         for (LatLng latLng : latlngs) {
             builder.include(latLng);
@@ -123,6 +119,9 @@ public class ActivityDetailsFragment extends Fragment implements OnMapReadyCallb
         int padding = 50;
         LatLngBounds bounds = builder.build();
         final CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-        googleMap.setOnMapLoadedCallback(() -> googleMap.animateCamera(cameraUpdate));
+        googleMap.setOnMapLoadedCallback(() -> {
+            googleMap.moveCamera(cameraUpdate);
+            googleMap.addPolyline(new PolylineOptions().color(Color.RED)).setPoints(latlngs);
+        });
     }
 }
