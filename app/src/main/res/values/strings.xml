@@ -4,7 +4,7 @@
     <string name="token_key">token</string>
     <string name="google_map_key">AIzaSyAqeJZMIV0yPmDzSTjaZPg4yB8QuhZF06I</string>
 
-    <string name="nav_activities">Activities</string>
+    <string name="nav_activities">Feeds</string>
     <string name="nav_stats">Stats</string>
     <string name="nav_profile">Profile</string>
     <string name="nav_logout">Logout</string>

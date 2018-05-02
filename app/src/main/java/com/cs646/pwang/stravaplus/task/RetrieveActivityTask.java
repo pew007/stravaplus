@@ -21,7 +21,7 @@ public class RetrieveActivityTask extends AsyncTask<Integer, Void, Activity> {
     @Override
     protected void onPreExecute() {
         mProgressDialog = new ProgressDialog(mActivityDetailsFragment.getContext());
-        mProgressDialog.setMessage("Loading activities");
+        mProgressDialog.setMessage("Loading activity");
         mProgressDialog.show();
     }
 

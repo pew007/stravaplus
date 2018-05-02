@@ -7,32 +7,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.cs646.pwang.stravaplus.R;
 import com.cs646.pwang.stravaplus.chart.datatype.AbstractChartDataType;
 import com.cs646.pwang.stravaplus.chart.formatter.DateValueFormatter;
 import com.cs646.pwang.stravaplus.task.GetActivitiesForChartTask;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.activity.model.ActivityType;
 import com.sweetzpot.stravazpot.common.model.Time;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 public class ChartFragment extends Fragment {
 
@@ -107,27 +103,27 @@ public class ChartFragment extends Fragment {
     }
 
     public void displayChart(List<Activity> activities) {
+        TextView chartTile = getActivity().findViewById(R.id.chart_title);
+        chartTile.setText(mChartDataType.getDescription());
+
         LineChart chart = getActivity().findViewById(R.id.chart);
 
         List<Entry> entries = getEntries(activities);
 
-        LineDataSet dataSet = new LineDataSet(entries, "Label"); // add entries to dataset
+        LineDataSet dataSet = new LineDataSet(entries, "");
         dataSet.setColor(R.color.colorPrimary);
         dataSet.setValueTextColor(R.color.colorAccent);
         dataSet.setValueFormatter(new DateValueFormatter());
 
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
-        chart.setDescription(mChartDataType.getChartDescription());
+
+        Description description = new Description();
+        description.setEnabled(false);
+        chart.setDescription(description);
 
         XAxis xAxis = chart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setDrawGridLines(false);
-        xAxis.setCenterAxisLabels(true);
-        xAxis.setValueFormatter((value, axis) -> {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy", Locale.US);
-            return dateFormat.format(new Date((long) value));
-        });
+        xAxis.setEnabled(false);
 
         YAxis yAxis = chart.getAxisLeft();
         yAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
@@ -135,6 +131,9 @@ public class ChartFragment extends Fragment {
 
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setEnabled(false);
+
+        Legend legend = chart.getLegend();
+        legend.setEnabled(false);
 
         chart.invalidate();
     }

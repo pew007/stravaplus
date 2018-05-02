@@ -1,6 +1,5 @@
 package com.cs646.pwang.stravaplus.chart.datatype;
 
-import com.github.mikephil.charting.components.Description;
 import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.activity.model.ActivityType;
 
@@ -13,10 +12,8 @@ public class AverageRideHeartRateDataType extends AbstractChartDataType {
     }
 
     @Override
-    public Description getChartDescription() {
-        Description description = new Description();
-        description.setText("Average Ride Heart Rate");
-        return description;
+    public String getDescription() {
+        return "Average Ride Heart Rate";
     }
 
     @Override
