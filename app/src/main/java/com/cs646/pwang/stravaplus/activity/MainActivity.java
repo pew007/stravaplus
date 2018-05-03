@@ -17,8 +17,8 @@ import android.view.MenuItem;
 import com.cs646.pwang.stravaplus.R;
 import com.cs646.pwang.stravaplus.StravaConfiguration;
 import com.cs646.pwang.stravaplus.fragment.ActivitiesFragment;
-import com.cs646.pwang.stravaplus.fragment.ProfileFragment;
 import com.cs646.pwang.stravaplus.fragment.StatsFragment;
+import com.cs646.pwang.stravaplus.fragment.PerformanceFragment;
 import com.sweetzpot.stravazpot.common.api.StravaConfig;
 
 public class MainActivity extends AppCompatActivity {
@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_stats:
                     goToStatsFragment();
                     return true;
-                case R.id.nav_profile:
-                    goToProfileFragment();
+                case R.id.nav_performance:
+                    goToPerformanceFragment();
                     return true;
                 case R.id.nav_logout:
                     SharedPreferences sharedPref = getSharedPreferences("app", Context.MODE_PRIVATE);
@@ -101,22 +101,22 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    private void goToPerformanceFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        PerformanceFragment performanceFragment = new PerformanceFragment();
+
+        fragmentTransaction.replace(R.id.content_fragment, performanceFragment);
+        fragmentTransaction.addToBackStack("");
+        fragmentTransaction.commit();
+    }
+
     private void goToStatsFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         StatsFragment statsFragment = new StatsFragment();
 
         fragmentTransaction.replace(R.id.content_fragment, statsFragment);
-        fragmentTransaction.addToBackStack("");
-        fragmentTransaction.commit();
-    }
-
-    private void goToProfileFragment() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        ProfileFragment profileFragment = new ProfileFragment();
-
-        fragmentTransaction.replace(R.id.content_fragment, profileFragment);
         fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
     }

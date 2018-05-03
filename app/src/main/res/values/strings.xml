@@ -4,25 +4,26 @@
     <string name="token_key">token</string>
     <string name="google_map_key">AIzaSyAqeJZMIV0yPmDzSTjaZPg4yB8QuhZF06I</string>
 
-    <string name="nav_activities">Feeds</string>
+    <string name="nav_activities">Feed</string>
     <string name="nav_stats">Stats</string>
-    <string name="nav_profile">Profile</string>
+    <string name="nav_performance">Performance</string>
     <string name="nav_logout">Logout</string>
 
     <string name="label_steps">steps</string>
     <string name="label_power">avg power</string>
 
-    <string-array name="stats_options">
+    <string-array name="performance_options">
         <item>Average Running Heart Rate</item>
         <item>Average Cycling Heart Rate</item>
         <item>Average Running Speed</item>
         <item>Average Cycling Speed</item>
         <item>Average Cycling Power</item>
+        <item>Max Cycling Power</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_profile_fragment">Hello profile fragment</string>
-    <string name="hello_blank_fragment">Hello chart fragment</string>
+    <string name="hello_profile_fragment">Hello stats fragment</string>
+
     <string name="last_week_text">7 days</string>
     <string name="last_month_text">30 days</string>
     <string name="last_quarter_text">3 months</string>

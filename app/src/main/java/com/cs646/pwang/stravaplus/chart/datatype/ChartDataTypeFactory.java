@@ -15,6 +15,8 @@ public class ChartDataTypeFactory {
                 return new AverageRideSpeedDataType();
             case "Average Cycling Power":
                 return new AverageRidePowerDataType();
+            case "Max Cycling Power":
+                return new MaxRidePowerDataType();
         }
 
         return null;
