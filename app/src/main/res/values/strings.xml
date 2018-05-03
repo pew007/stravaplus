@@ -5,7 +5,6 @@
     <string name="google_map_key">AIzaSyAqeJZMIV0yPmDzSTjaZPg4yB8QuhZF06I</string>
 
     <string name="nav_activities">Feed</string>
-    <string name="nav_stats">Stats</string>
     <string name="nav_performance">Performance</string>
     <string name="nav_logout">Logout</string>
 
@@ -20,9 +19,6 @@
         <item>Average Cycling Power</item>
         <item>Max Cycling Power</item>
     </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_profile_fragment">Hello stats fragment</string>
 
     <string name="last_week_text">7 days</string>
     <string name="last_month_text">30 days</string>

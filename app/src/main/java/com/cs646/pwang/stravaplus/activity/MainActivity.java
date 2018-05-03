@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import com.cs646.pwang.stravaplus.R;
 import com.cs646.pwang.stravaplus.StravaConfiguration;
 import com.cs646.pwang.stravaplus.fragment.ActivitiesFragment;
-import com.cs646.pwang.stravaplus.fragment.StatsFragment;
 import com.cs646.pwang.stravaplus.fragment.PerformanceFragment;
 import com.sweetzpot.stravazpot.common.api.StravaConfig;
 
@@ -70,9 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_activities:
                     goToActivitiesFragment();
                     return true;
-                case R.id.nav_stats:
-                    goToStatsFragment();
-                    return true;
                 case R.id.nav_performance:
                     goToPerformanceFragment();
                     return true;
@@ -107,16 +103,6 @@ public class MainActivity extends AppCompatActivity {
         PerformanceFragment performanceFragment = new PerformanceFragment();
 
         fragmentTransaction.replace(R.id.content_fragment, performanceFragment);
-        fragmentTransaction.addToBackStack("");
-        fragmentTransaction.commit();
-    }
-
-    private void goToStatsFragment() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        StatsFragment statsFragment = new StatsFragment();
-
-        fragmentTransaction.replace(R.id.content_fragment, statsFragment);
         fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
     }
