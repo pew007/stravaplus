@@ -16,6 +16,8 @@ public abstract class AbstractChartDataType implements Serializable {
 
     public abstract String getDescription();
 
+    public abstract String formatDisplayData(float value);
+
     List<ActivityType> getRideType() {
         return Arrays.asList(ActivityType.RIDE, ActivityType.VIRTUAL_RIDE, ActivityType.EBIKE_RIDE);
     }

@@ -1,8 +1,10 @@
 package com.cs646.pwang.stravaplus.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +13,9 @@ import android.widget.TextView;
 
 import com.cs646.pwang.stravaplus.R;
 import com.cs646.pwang.stravaplus.chart.datatype.AbstractChartDataType;
-import com.cs646.pwang.stravaplus.chart.formatter.DateValueFormatter;
 import com.cs646.pwang.stravaplus.task.GetActivitiesForChartTask;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -21,14 +23,17 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.activity.model.ActivityType;
 import com.sweetzpot.stravazpot.common.model.Time;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ChartFragment extends Fragment {
 
@@ -111,9 +116,9 @@ public class ChartFragment extends Fragment {
         List<Entry> entries = getEntries(activities);
 
         LineDataSet dataSet = new LineDataSet(entries, "");
-        dataSet.setColor(R.color.colorPrimary);
-        dataSet.setValueTextColor(R.color.colorAccent);
-        dataSet.setValueFormatter(new DateValueFormatter());
+        dataSet.setColor(Color.RED);
+        dataSet.setValueTextColor(Color.BLUE);
+        dataSet.setValueFormatter((value, entry, dataSetIndex, viewPortHandler) -> mChartDataType.formatDisplayData(value));
 
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
@@ -123,11 +128,19 @@ public class ChartFragment extends Fragment {
         chart.setDescription(description);
 
         XAxis xAxis = chart.getXAxis();
-        xAxis.setEnabled(false);
+        xAxis.setEnabled(true);
+        xAxis.setPosition(XAxis.XAxisPosition.TOP_INSIDE);
+        xAxis.setDrawGridLines(false);
+        xAxis.setLabelRotationAngle(45);
+        xAxis.setValueFormatter((value, axis) -> {
+            Date date = new Date((long) (value * 1000));
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+            return sdf.format(date);
+        });
 
-        YAxis yAxis = chart.getAxisLeft();
-        yAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
-        yAxis.setDrawGridLines(false);
+        YAxis leftAxis = chart.getAxisLeft();
+        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+        leftAxis.setDrawGridLines(false);
 
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setEnabled(false);

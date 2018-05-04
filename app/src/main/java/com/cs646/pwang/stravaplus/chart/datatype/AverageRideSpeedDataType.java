@@ -5,6 +5,7 @@ import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.activity.model.ActivityType;
 
 import java.util.List;
+import java.util.Locale;
 
 public class AverageRideSpeedDataType extends AbstractChartDataType {
     @Override
@@ -15,6 +16,11 @@ public class AverageRideSpeedDataType extends AbstractChartDataType {
     @Override
     public String getDescription() {
         return "Average Ride Speed";
+    }
+
+    @Override
+    public String formatDisplayData(float value) {
+        return String.format(Locale.US, "%.1f mph", value);
     }
 
     @Override

@@ -38,7 +38,7 @@ public class GetActivitiesForChartTask extends AsyncTask<Time, Void, List<Activi
         ActivityAPI activityAPI = new ActivityAPI(config);
 
         return activityAPI.listMyActivities()
-                .perPage(60)
+                .perPage(100)
                 .before(endDate)
                 .after(startDate)
                 .execute();

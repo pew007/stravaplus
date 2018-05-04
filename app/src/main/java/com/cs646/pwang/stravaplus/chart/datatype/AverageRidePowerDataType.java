@@ -4,6 +4,7 @@ import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.activity.model.ActivityType;
 
 import java.util.List;
+import java.util.Locale;
 
 public class AverageRidePowerDataType extends AbstractChartDataType {
     @Override
@@ -18,5 +19,10 @@ public class AverageRidePowerDataType extends AbstractChartDataType {
     @Override
     public String getDescription() {
         return "Average Ride Power";
+    }
+
+    @Override
+    public String formatDisplayData(float value) {
+        return String.format(Locale.US, "%.0fW", value);
     }
 }
