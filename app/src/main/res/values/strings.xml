@@ -23,5 +23,9 @@
     <string name="last_week_text">7 days</string>
     <string name="last_month_text">30 days</string>
     <string name="last_quarter_text">3 months</string>
+    <string name="title_add_activity">add_activity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

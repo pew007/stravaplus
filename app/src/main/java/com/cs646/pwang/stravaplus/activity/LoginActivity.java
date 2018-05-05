@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
                 .withClientID(CLIENT_ID)
                 .withRedirectURI(REDIRECT_URI)
                 .withApprovalPrompt(ApprovalPrompt.FORCE)
-                .withAccessScope(AccessScope.PUBLIC)
+                .withAccessScope(AccessScope.VIEW_PRIVATE_WRITE)
                 .makeIntent();
         startActivityForResult(intent, RQ_LOGIN);
     }

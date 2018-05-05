@@ -23,6 +23,24 @@ public class DataTransformer {
     public static int calculateSteps(Speed speed, Time time) {
         double metersPerSecond = speed.getMetersPerSecond();
         int seconds = time.getSeconds();
-        return  (int) metersPerSecond * seconds;
+        return (int) metersPerSecond * seconds;
+    }
+
+    public static Distance milesToDistance(float distanceInMiles) {
+        double meters = distanceInMiles * 1609.344;
+
+        return new Distance((float) meters);
+    }
+
+    public static Time hhmmssToTime(String timeInHHMMSS) {
+        String[] timeFields = timeInHHMMSS.split(":");
+
+        int hours = Integer.parseInt(timeFields[0]);
+        int minutes = Integer.parseInt(timeFields[1]);
+        int seconds = Integer.parseInt(timeFields[2]);
+
+        int timeInSeconds = hours * 3600 + minutes * 60 + seconds;
+
+        return new Time(timeInSeconds);
     }
 }
