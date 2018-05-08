@@ -2,7 +2,6 @@ package com.cs646.pwang.stravaplus.task;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.cs646.pwang.stravaplus.StravaConfiguration;
 import com.cs646.pwang.stravaplus.fragment.AddActivityFragment;
@@ -10,7 +9,6 @@ import com.sweetzpot.stravazpot.activity.api.ActivityAPI;
 import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.activity.model.ActivityType;
 import com.sweetzpot.stravazpot.common.api.StravaConfig;
-import com.sweetzpot.stravazpot.common.api.exception.StravaUnauthorizedException;
 import com.sweetzpot.stravazpot.common.model.Distance;
 import com.sweetzpot.stravazpot.common.model.Time;
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -97,29 +98,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToActivitiesFragment() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         ActivitiesFragment activitiesFragment = new ActivitiesFragment();
-
-        fragmentTransaction.replace(R.id.content_fragment, activitiesFragment);
-        fragmentTransaction.addToBackStack("");
-        fragmentTransaction.commit();
+        goToFragment(activitiesFragment);
     }
 
     private void goToPerformanceFragment() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         PerformanceFragment performanceFragment = new PerformanceFragment();
-
-        fragmentTransaction.replace(R.id.content_fragment, performanceFragment);
-        fragmentTransaction.addToBackStack("");
-        fragmentTransaction.commit();
+        goToFragment(performanceFragment);
     }
 
     private void goToAddActivityFragment() {
+        AddActivityFragment fragment = new AddActivityFragment();
+        goToFragment(fragment);
+    }
+
+    private void goToFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        AddActivityFragment fragment = new AddActivityFragment();
 
         fragmentTransaction.replace(R.id.content_fragment, fragment);
         fragmentTransaction.addToBackStack("");
