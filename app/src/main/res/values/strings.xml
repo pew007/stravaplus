@@ -3,6 +3,9 @@
     <string name="login_strava">Login</string>
     <string name="token_key">token</string>
     <string name="google_map_key">AIzaSyAqeJZMIV0yPmDzSTjaZPg4yB8QuhZF06I</string>
+    <string name="client_id">9353</string>
+    <string name="client_secret">adf9e2e21ce5de147b7816cb82103455aacb18e8</string>
+    <string name="redirect_url">stravapluscs646://cs646callback.com</string>
 
     <string name="nav_activities">Feed</string>
     <string name="nav_performance">Performance</string>

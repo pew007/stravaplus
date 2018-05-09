@@ -1,8 +1,8 @@
 package com.cs646.pwang.stravaplus.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.cs646.pwang.stravaplus.R;
@@ -16,8 +16,6 @@ import com.sweetzpot.stravazpot.authenticaton.ui.StravaLoginButton;
 public class LoginActivity extends AppCompatActivity {
 
     private static final int RQ_LOGIN = 1;
-    private static final int CLIENT_ID = 9353;
-    private static final String REDIRECT_URI = "stravapluscs646://cs646callback.com";
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
@@ -33,9 +31,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login() {
+        int clientId = Integer.parseInt(getString(R.string.client_id));
+        String redirectUrl = getString(R.string.redirect_url);
+
         Intent intent = StravaLogin.withContext(this)
-                .withClientID(CLIENT_ID)
-                .withRedirectURI(REDIRECT_URI)
+                .withClientID(clientId)
+                .withRedirectURI(redirectUrl)
                 .withApprovalPrompt(ApprovalPrompt.FORCE)
                 .withAccessScope(AccessScope.VIEW_PRIVATE_WRITE)
                 .makeIntent();
