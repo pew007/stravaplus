@@ -14,8 +14,8 @@ Password: cs646
 Known bugs / Limitations:
 - The Strava API does not support inputting metrics through manually uploading activities. So any manually uploaded activities will not have metrics data.
 - Users cannot go to a specific activity directly from the chart.
-- The chart displays data in 3 time intervals: last 7 days, last 30 days, last 3 months. Users cannot set custom time intervals yet.
 
 3rd Party Libraries:
 - StravaZpot-Android (https://github.com/SweetzpotAS/StravaZpot-Android)
 - MPAndroidChart (https://github.com/PhilJay/MPAndroidChart)
+- SmoothDateRangePicker (https://github.com/leavjenn/SmoothDateRangePicker)

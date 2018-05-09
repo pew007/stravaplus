@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import com.cs646.pwang.stravaplus.R;
 import com.cs646.pwang.stravaplus.chart.datatype.AbstractChartDataType;
 import com.cs646.pwang.stravaplus.task.GetActivitiesForChartTask;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -23,7 +21,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.leavjenn.smoothdaterangepicker.date.SmoothDateRangePickerFragment;
 import com.sweetzpot.stravazpot.activity.model.Activity;
 import com.sweetzpot.stravazpot.activity.model.ActivityType;
 import com.sweetzpot.stravazpot.common.model.Time;
@@ -41,6 +39,7 @@ public class ChartFragment extends Fragment {
     Button mLastWeek;
     Button mLastMonth;
     Button mLastQuarter;
+    Button mCustom;
 
     public ChartFragment() {
     }
@@ -61,12 +60,34 @@ public class ChartFragment extends Fragment {
         mLastWeek = getActivity().findViewById(R.id.last_week_button);
         mLastMonth = getActivity().findViewById(R.id.last_month_button);
         mLastQuarter = getActivity().findViewById(R.id.last_quarter_button);
+        mCustom = getActivity().findViewById(R.id.custom_button);
 
         mLastWeek.setOnClickListener(event -> showLastWeek());
         mLastMonth.setOnClickListener(event -> showLastMonth());
         mLastQuarter.setOnClickListener(event -> showLastQuarter());
+        mCustom.setOnClickListener(event -> showDateRangePicker());
 
         showLastMonth();
+    }
+
+    private void showDateRangePicker() {
+        SmoothDateRangePickerFragment smoothDateRangePickerFragment = SmoothDateRangePickerFragment.newInstance(
+                (view, yearStart, monthStart, dayStart, yearEnd, monthEnd, dayEnd) -> {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(yearStart, monthStart, dayStart);
+                    Date startDate = calendar.getTime();
+                    long timestamp = startDate.getTime();
+                    Time startTime = new Time((int) (timestamp / 1000));
+
+                    calendar.set(yearEnd, monthEnd, dayEnd);
+                    Date endDate = calendar.getTime();
+                    timestamp = endDate.getTime();
+                    Time endTime = new Time((int) (timestamp / 1000));
+
+                    getActivitiesForChart(startTime, endTime);
+                });
+
+        smoothDateRangePickerFragment.show(getActivity().getFragmentManager(), "smoothDateRangePicker");
     }
 
     private void showLastWeek() {
