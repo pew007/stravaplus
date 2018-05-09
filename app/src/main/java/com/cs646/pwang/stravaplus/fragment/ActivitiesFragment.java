@@ -61,7 +61,7 @@ public class ActivitiesFragment extends ListFragment implements AdapterView.OnIt
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         ActivityDetailsFragment detailsFragment = new ActivityDetailsFragment();
         Bundle data = new Bundle();
-        data.putInt("activityId", activity.getID());
+        data.putInt(getString(R.string.key_activity_id), activity.getID());
         detailsFragment.setArguments(data);
         fragmentTransaction.replace(R.id.content_fragment, detailsFragment);
         fragmentTransaction.addToBackStack("");

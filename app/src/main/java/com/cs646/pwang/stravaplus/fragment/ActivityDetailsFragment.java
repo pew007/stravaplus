@@ -38,7 +38,7 @@ public class ActivityDetailsFragment extends Fragment implements OnMapReadyCallb
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        int activityId = getArguments().getInt("activityId");
+        int activityId = getArguments().getInt(getString(R.string.key_activity_id));
 
         RetrieveActivityTask task = new RetrieveActivityTask(this);
         task.execute(activityId);

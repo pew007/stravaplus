@@ -164,7 +164,7 @@ public class AddActivityFragment extends Fragment {
         ActivityDetailsFragment fragment = new ActivityDetailsFragment();
 
         Bundle data = new Bundle();
-        data.putInt("activityId", activity.getID());
+        data.putInt(getString(R.string.key_activity_id), activity.getID());
         fragment.setArguments(data);
 
         fragmentTransaction.replace(R.id.content_fragment, fragment);
