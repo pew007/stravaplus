@@ -6,12 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".fragment.AddActivityFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,7 +37,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        android:text="Sport"
+                        android:text="@string/label_sport"
                         android:textAlignment="viewStart"
                         android:textAppearance="@style/TextAppearance.AppCompat" />
 
@@ -54,14 +51,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Run" />
+                            android:text="@string/label_run" />
 
                         <RadioButton
                             android:id="@+id/radio_ride"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Ride" />
+                            android:text="@string/label_ride" />
                     </RadioGroup>
 
                 </TableRow>
@@ -74,7 +71,7 @@
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Elapsed"
+                        android:text="@string/text_elapsed"
                         android:textAppearance="@style/TextAppearance.AppCompat" />
 
                     <EditText
@@ -82,7 +79,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="HH:MM:SS"
+                        android:hint="@string/hint_hh_mm_ss"
                         android:imeOptions="actionDone"
                         android:inputType="time"
                         android:textAlignment="center" />
@@ -97,7 +94,8 @@
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Distance"
+                        android:text="@string/text_distance"
+                        android:labelFor="@+id/activity_distance"
                         android:textAppearance="@style/TextAppearance.AppCompat" />
 
                     <EditText
@@ -113,7 +111,7 @@
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="mi"
+                        android:text="@string/label_mi"
                         android:textAppearance="@style/TextAppearance.AppCompat" />
                 </TableRow>
 
@@ -122,10 +120,10 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Name"
+                        android:text="@string/text_name"
+                        android:labelFor="@+id/activity_name"
                         android:textAppearance="@style/TextAppearance.AppCompat" />
 
                     <EditText
@@ -144,10 +142,9 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Date"
+                        android:text="@string/text_date"
                         android:textAppearance="@style/TextAppearance.AppCompat" />
 
                     <Button
@@ -155,7 +152,7 @@
                         style="@style/Widget.AppCompat.Button.Borderless.Colored"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="MM/DD/YYYY"
+                        android:text="@string/text_mm_dd_yyyy"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         tools:text="MM/DD/YYYY" />
 
@@ -169,7 +166,7 @@
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Time"
+                        android:text="@string/text_time"
                         android:textAppearance="@style/TextAppearance.AppCompat" />
 
                     <Button
@@ -177,7 +174,7 @@
                         style="@style/Widget.AppCompat.Button.Borderless.Colored"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="HH:MM"
+                        android:text="@string/text_hh_mm"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         tools:text="HH:MM" />
 
@@ -189,7 +186,7 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save Activity" />
+                android:text="@string/text_save_activity" />
         </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>

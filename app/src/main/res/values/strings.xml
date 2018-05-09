@@ -11,7 +11,6 @@
     <string name="nav_performance">Performance</string>
     <string name="nav_logout">Logout</string>
 
-    <string name="label_steps">steps</string>
     <string name="label_power">avg power</string>
 
     <string-array name="performance_options">
@@ -29,5 +28,27 @@
     <string name="title_add_activity">add_activity</string>
 
     <string name="key_activity_id">activityId</string>
+    <string name="label_speed">speed</string>
+    <string name="label_pace">pace</string>
+    <string name="label_calories">calories</string>
+    <string name="label_elevation">elevation</string>
+    <string name="label_steps">steps</string>
+    <string name="label_cadence">cadence</string>
+    <string name="label_hr">heart rate</string>
+    <string name="label_distance">distance</string>
+    <string name="label_elapsed">elapsed</string>
+    <string name="label_sport">Sport</string>
+    <string name="label_run">Run</string>
+    <string name="label_ride">Ride</string>
+    <string name="text_elapsed">Elapsed</string>
+    <string name="hint_hh_mm_ss">HH:MM:SS</string>
+    <string name="text_distance">Distance</string>
+    <string name="label_mi">mi</string>
+    <string name="text_name">Name</string>
+    <string name="text_date">Date</string>
+    <string name="text_mm_dd_yyyy">MM/DD/YYYY</string>
+    <string name="text_time">Time</string>
+    <string name="text_hh_mm">HH:MM</string>
+    <string name="text_save_activity">Save Activity</string>
 
 </resources>

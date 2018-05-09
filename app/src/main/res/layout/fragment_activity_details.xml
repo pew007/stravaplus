@@ -14,7 +14,6 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Afternoon Run"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +24,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:text="April 11, 2018 at 4:30 PM"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="40dp" />
 
@@ -74,14 +72,13 @@
                     android:id="@+id/activity_speed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="7.5 mph"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="speed" />
+                    android:text="@string/label_speed" />
             </LinearLayout>
 
             <LinearLayout
@@ -98,14 +95,13 @@
                     android:id="@+id/activity_pace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="8:00 /mi"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="pace" />
+                    android:text="@string/label_pace" />
             </LinearLayout>
 
             <LinearLayout
@@ -122,14 +118,13 @@
                     android:id="@+id/activity_calories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="817"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="calories" />
+                    android:text="@string/label_calories" />
             </LinearLayout>
 
             <LinearLayout
@@ -146,14 +141,13 @@
                     android:id="@+id/activity_elevation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1000 ft"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="elevation" />
+                    android:text="@string/label_elevation" />
             </LinearLayout>
 
             <LinearLayout
@@ -170,7 +164,6 @@
                     android:id="@+id/activity_steps_or_power"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9317"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
@@ -178,7 +171,7 @@
                     android:id="@+id/activity_steps_or_power_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="steps" />
+                    android:text="@string/label_steps" />
             </LinearLayout>
 
             <LinearLayout
@@ -195,14 +188,13 @@
                     android:id="@+id/activity_cadence"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="180"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="cadence" />
+                    android:text="@string/label_cadence" />
             </LinearLayout>
 
             <LinearLayout
@@ -219,14 +211,13 @@
                     android:id="@+id/activity_hr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="156"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="heart rate" />
+                    android:text="@string/label_hr" />
             </LinearLayout>
 
             <LinearLayout
@@ -243,14 +234,13 @@
                     android:id="@+id/activity_distance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="6.7 mi"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="distance" />
+                    android:text="@string/label_distance" />
             </LinearLayout>
 
             <LinearLayout
@@ -267,14 +257,13 @@
                     android:id="@+id/activity_moving_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0h 55m"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="elapsed" />
+                    android:text="@string/label_elapsed" />
             </LinearLayout>
 
         </android.support.v7.widget.GridLayout>
