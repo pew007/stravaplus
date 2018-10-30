@@ -1,15 +1,6 @@
-CS646
-Pengyu Wang
-816347552
-
 Overview:
 Strava Plus is an application that allows users to log and analyze their running and cycling activities.
 It displays key metrics (average heart rate, average speed, average power, etc) in charts so users can visualize their performance progression over time.
-
-Credentials:
-The application uses the Strava API so users must be active Strava users. To test the application, use my login credentials:
-Username: bird0407@gmail.com
-Password: cs646
 
 Known bugs / Limitations:
 - The Strava API does not support inputting metrics through manually uploading activities. So any manually uploaded activities will not have metrics data.
